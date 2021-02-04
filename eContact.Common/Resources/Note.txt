@@ -1,0 +1,3 @@
+Resource files
+1. UI Exceptaion Messages
+2. UI Labels, Headers, Information

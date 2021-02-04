@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\eContact.Business\eContact.Business.csproj" />
+    <ProjectReference Include="..\eContact.Data.Entities\eContact.Data.Entities.csproj" />
+    <ProjectReference Include="..\eContact.Data\eContact..Data.csproj" />
+    <ProjectReference Include="..\eContact.Services\eContact.Services.csproj" />
+  </ItemGroup>
+
+
+</Project>
