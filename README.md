@@ -1,6 +1,7 @@
 # eContact
-For contact management
-Project has below components
+eContact API Project has below components
+
+Th project is implemented in .Net Core. 
 
 Database
 Just create an empty database and provide the connection in appsettings.json, it will create the table required for the application.
