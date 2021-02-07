@@ -15,7 +15,5 @@ namespace eContact.Data.SqlServer.Repository
         int Update(T entity);
         Task<T> DeleteAsync(int id);
         int Delete(int id);
-        void Save();
-        void SetUnitWork(IUnitOfWork unitOfWork);
     }
 }

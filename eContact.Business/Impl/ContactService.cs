@@ -37,27 +37,5 @@ namespace eContact.Services
         {
             _contactRepository.AddAsync(contact);
         }
-
-        public int UpdateContact(Contact contact)
-        {
-            return _contactRepository.Update(contact);
-        }
-
-        public void SaveContact()
-        {
-            // Tempory added Unit Of Work Pattern.
-            IUnitOfWork unitOfWork = null; // new ContactRepository();
-            try
-            {
-                _contactRepository.SetUnitWork(unitOfWork);
-                _contactRepository.Save();
-                unitOfWork.CommitTransaction();
-            }
-            catch (Exception)
-            {
-                unitOfWork.RollBackTransaction();
-                throw;
-            }
-        }
     }
 }

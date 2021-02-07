@@ -76,15 +76,5 @@ namespace eContact.Data.SqlServer.Repository
 
             return _context.SaveChanges(); 
         }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetUnitWork(IUnitOfWork unitOfWork)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
