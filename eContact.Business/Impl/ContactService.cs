@@ -3,17 +3,14 @@ using eContact.Data.SqlServer.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace eContact.Services
 {
+    //Using BasReo but as we need more customiztion we can use different repo with their own methods only
     public class ContactService : IContactService
     {
         private readonly IBaseRepository<Contact> _contactRepository;
-
-        public ContactService()
-        {
-            _contactRepository = new ContactRepository();
-        }
 
         // DI - Dependency Injection
         public ContactService(IBaseRepository<Contact> contactRepository)
@@ -21,14 +18,14 @@ namespace eContact.Services
             _contactRepository = contactRepository;
         }
 
-        public IEnumerable<Contact> GetContact()
+        public Task<List<Contact>> GetContact()
         {
-            return _contactRepository.Get();
+            return _contactRepository.GetAllAsync();
         }
 
-        public Contact GetContactById(int contactId)
+        public Task<Contact> GetContactById(int contactId)
         {
-            return _contactRepository.GetByID(contactId);
+            return _contactRepository.GetAsync(contactId);
         }
 
         public void DeleteContact(int contactId)
@@ -38,9 +35,13 @@ namespace eContact.Services
 
         public void AddContact(Contact contact)
         {
-            _contactRepository.Insert(contact);
+            _contactRepository.AddAsync(contact);
         }
 
+        public int UpdateContact(Contact contact)
+        {
+            return _contactRepository.Update(contact);
+        }
 
         public void SaveContact()
         {

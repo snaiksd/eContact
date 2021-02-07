@@ -1,2 +1,0 @@
-# eContact
-For contact management

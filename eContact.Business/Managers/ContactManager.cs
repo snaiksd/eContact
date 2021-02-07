@@ -3,6 +3,7 @@ using eContact.Data.SqlServer.Repository;
 using eContact.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace eContact.Business.Managers
 {
@@ -11,9 +12,18 @@ namespace eContact.Business.Managers
         private IContactService _ContactService;
 
         // Can Implement DI for IContact ContactService
+        public ContactManager(IContactService ctService)
+        {
+            _ContactService = ctService;
+        }
+
         public ContactManager()
         {
-            _ContactService = new ContactService();
+        }
+
+        public Task<List<Contact>> GetContacts()
+        {
+            return _ContactService.GetContact();
         }
 
         public void DeleteContact(int contactId)
@@ -26,17 +36,12 @@ namespace eContact.Business.Managers
             _ContactService.AddContact(contact);
         }
 
-        public void EditContact(Contact contact)
+        public int EditContact(Contact contact)
         {
-            _ContactService.AddContact(contact);
+            return _ContactService.UpdateContact(contact);
         }
 
-        public IEnumerable<Contact> GetContacts()
-        {
-            return _ContactService.GetContact();
-        }
-
-        public Contact GetContactById(int contactId)
+        public Task<Contact> GetContactById(int contactId)
         {
             return _ContactService.GetContactById(contactId);
         }

@@ -10,11 +10,11 @@ namespace eContact.Data.SqlServer.Repository
     {
         Task<List<T>> GetAllAsync();
         Task<T> GetAsync(int id);
+        Task<T> GetAsync(long id);
         Task<T> AddAsync(T entity);
         Task<T> UpdateAsync(T entity);
-        int Update(T entity);
         Task<T> DeleteAsync(int id);
-        int Delete(int id);
+        Task<T> DeleteAsync(long id);
         void Save();
         void SetUnitWork(IUnitOfWork unitOfWork);
     }

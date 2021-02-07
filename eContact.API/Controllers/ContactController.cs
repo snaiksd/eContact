@@ -10,69 +10,76 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace WebApplication1.Controllers
+
+namespace eContact.API.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ContactController : Controller
     {
-        ContactManager contactManager;
-        // GET: Contact
-        public IEnumerable<Contact> Index()
+        ContactManager _contactManager;
+
+        public ContactController(IContactService _contactService)
         {
-            return contactManager.GetContacts();
+            _contactManager = new ContactManager(_contactService);
+        }
+
+        // GET: Contact
+        [HttpGet]
+        public async Task<ActionResult> Index()
+        {
+           return Ok(await _contactManager.GetContacts());
+        }
+
+        [HttpGet("/{id}")]
+        // GET: Contact/Edit/5
+        public async Task<ActionResult> GetContact(int id)
+        {
+            return Ok(await _contactManager.GetContactById(id));
         }
 
         // POST: Contact/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpPost("/Add")]
+        public IActionResult Create(Contact contact)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _contactManager.AddContact(contact);
+                return Ok();
             }
-            catch
+            catch(Exception ex)
             {
-                // change with suitable HTTP error and errormessage
-                return View();
+                //_logger.LogError(ex.Message);
+                return BadRequest(Util.ErrorResponse.FormatResponse("Something went wrong!", ex.Message));
             }
-        }
-
-        // GET: Contact/Edit/5
-        public Contact Edit(int id)
-        {
-            return contactManager.GetContactById(id);
         }
 
         // POST: Contact/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpPost("/Edit")]
+        public IActionResult Edit(Contact contact)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                return Ok(_contactManager.EditContact(contact));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                return BadRequest(Util.ErrorResponse.FormatResponse("Something went wrong!", ex.Message));
             }
         }
 
-        // POST: Contact/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public int DeleteContact(int id)
+        // Delete: Contact/Delete/5
+        [HttpDelete("/{id}")]
+        public IActionResult DeleteContact(int id)
         {
             try
             {
-                contactManager.DeleteContact(id);
-                return 1;
+                _contactManager.DeleteContact(id);
+                return Ok();
             }
-            catch
+            catch (Exception ex)
             {
-                // change with suitable HTTP error and errormessage
-                return 0;
-                //return View();
+                return BadRequest(Util.ErrorResponse.FormatResponse("Something went wrong!", ex.Message));
             }
         }
     }
