@@ -41,3 +41,4 @@ namespace eContact.Data.SqlServer.Repository
         public virtual DbSet<Contact> Contact { get; set; }
     }
 }
+//Design-Santosh Naik

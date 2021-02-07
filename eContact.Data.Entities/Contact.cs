@@ -13,3 +13,5 @@ namespace eContact.Data.Entities
         public bool Status { get; set; }
     }
 }
+
+//Design-Santosh Naik
