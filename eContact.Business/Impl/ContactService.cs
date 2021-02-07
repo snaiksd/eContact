@@ -37,5 +37,10 @@ namespace eContact.Services
         {
             _contactRepository.AddAsync(contact);
         }
+
+        public int UpdateContact(Contact contact)
+        {
+            return _contactRepository.Update(contact);
+        }
     }
 }
