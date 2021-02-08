@@ -1,6 +1,5 @@
 ﻿using eContact.Business;
 using eContact.Business.Managers;
-using eContact.Business.Validation;
 using eContact.Data.Entities;
 using eContact.Services;
 using System;
