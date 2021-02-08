@@ -1,7 +1,7 @@
 # eContact
-eContact API Project has below components
-
 Th project is implemented in .Net Core. If you run it on local, it will open swagger APIs at http://localhost:52315/swagger/index.html
+
+eContact API Project has below components
 
 Database
 
