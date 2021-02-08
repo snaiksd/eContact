@@ -26,8 +26,9 @@ eContact.NUnitTest
 Unit tests for the service and controller functions.
 
 Design
-Object creation is shifted using DI provided by Core
-Repository pattern is used for handling database table
+1. Object creation is shifted using DI provided by Core
+2. Repository pattern is used for handling database table
+3. No unnecessary patterns 
 
 
 Enhancements Not included
