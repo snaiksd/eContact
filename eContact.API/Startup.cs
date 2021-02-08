@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using eContact.Data.SqlServer.Repository;
 using eContact.Services;
+using eContact.Business.Managers;
 using eContact.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -37,6 +38,7 @@ namespace eContact.API
             services.AddScoped<IBaseRepository<Contact>, BaseRepository<Contact, ContactDBContext>>();
             services.AddScoped<IContactRepository, ContactRepository>();
             services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IContactManager, ContactManager>();
 
             //needed for call from client app
             services.AddCors(o => o.AddPolicy(_CtOrigins, builder =>

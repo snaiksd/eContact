@@ -7,11 +7,10 @@ using System.Threading.Tasks;
 
 namespace eContact.Business.Managers
 {
-    public class ContactManager
+    public class ContactManager : IContactManager
     {
         private IContactService _ContactService;
 
-        // Can Implement DI for IContact ContactService
         public ContactManager(IContactService ctService)
         {
             _ContactService = ctService;

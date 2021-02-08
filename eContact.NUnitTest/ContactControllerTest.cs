@@ -11,6 +11,7 @@ using System;
 using NUnit.Framework;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Assert = NUnit.Framework.Assert;
+using eContact.Business.Managers;
 
 namespace eContact.Tests.Controllers
 {
@@ -19,11 +20,16 @@ namespace eContact.Tests.Controllers
     {
         Random rnd = new Random();
         private Mock<IContactService> _mockContactService;
+        private IContactManager _ContactManager;
         ContactController controller;
         public ContactControllerTest()
         {
             _mockContactService = new Mock<IContactService>();
-            controller = new ContactController(_mockContactService.Object);
+
+            _ContactManager = new ContactManager(_mockContactService.Object);
+
+            controller = new ContactController(_ContactManager);
+
             var contacts = GetContact();
             var contact = GetFirstContact();
             _mockContactService.Setup(m => m.GetContact()).Returns((contacts));

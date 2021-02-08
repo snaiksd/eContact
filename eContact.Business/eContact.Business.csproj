@@ -9,9 +9,4 @@
     <ProjectReference Include="..\eContact.Data\eContact.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Helpers\" />
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
 </Project>

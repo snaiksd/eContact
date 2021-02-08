@@ -17,11 +17,11 @@ namespace eContact.API.Controllers
     [Route("[controller]")]
     public class ContactController : Controller
     {
-        ContactManager _contactManager;
+        IContactManager _contactManager;
 
-        public ContactController(IContactService _contactService)
+        public ContactController(IContactManager _contactManager)
         {
-            _contactManager = new ContactManager(_contactService);
+            this._contactManager = _contactManager;
         }
 
         // GET: Contact
