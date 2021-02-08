@@ -28,7 +28,6 @@ Unit tests for the service and controller functions.
 Design
 1. Object creation is shifted using DI provided by Core
 2. Repository pattern with EF Core Code First. Can use Unit of Work but not needed as not doing lot of things in one go.
-3. No unnecessary patterns 
 
 
 Enhancements Not included
